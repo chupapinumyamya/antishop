@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Дом - АНТИSHOP</title>
+    <title>АНТИSHOP</title>
     <style>
-    /* === НАЧАЛО СТИЛЕЙ ИЗ ГЛАВНОЙ СТРАНИЦЫ === */
     * {
         margin: 0;
         padding: 0;
@@ -301,33 +300,217 @@
     }
      /* Базовые стили прозрачной навигации */
 .main-nav {
- background: #ffffff; /* На страницах категорий сразу белый фон */
-    position: fixed; /* Фиксированная навигация */
+ background: transparent;
+    position: absolute;
     top: 0;
     left: 0;
     right: 0;
     z-index: 1000;
     transition: all 0.3s ease;
-    padding: 32px 0;
+    padding: 25px 0; /* Увеличиваем padding для большей высоты */
     width: 100%;
-    border-bottom: 1px solid #e5e5e5; /* Добавляем границу */
+    border-bottom: none; /* Убираем белую полоску */
+}
+/* Белые элементы в прозрачной навигации (изначальное состояние) */
+.main-nav:not(.scrolled) .logo,
+.main-nav:not(.scrolled) .catalog-btn {
+    color: #ffffff !important; /* Белые буквы изначально */
 }
 
-/* Стили для навигации на страницах категорий */
-.main-nav .logo,
-.main-nav .catalog-btn {
+.main-nav:not(.scrolled) .catalog-icon span {
+    background: #ffffff !important; /* Белые линии меню изначально */
+}
+
+.main-nav:not(.scrolled) .nav-icon {
+    filter: brightness(0) invert(1) !important; /* Белые иконки изначально */
+}
+
+/* При наведении на прозрачную навигацию - делаем фон полупрозрачным белым */
+.main-nav:not(.scrolled):hover {
+    background:#ffffff !important; /* Полупрозрачный белый */
+    border-bottom-color: #e5e5e5;
+}
+
+.main-nav:not(.scrolled):hover .logo,
+.main-nav:not(.scrolled):hover .catalog-btn {
+    color: #000000 !important; /* Черные буквы */
+}
+
+.main-nav:not(.scrolled):hover .catalog-icon span {
+    background: #000000 !important; /* Черные линии меню */
+}
+
+.main-nav:not(.scrolled):hover .nav-icon {
+    filter: none !important; /* Черные иконки */
+}
+
+/* Стили при скролле (белая навигация) */
+.main-nav.scrolled {
+    background: #ffffff !important;
+    border-bottom-color: #e5e5e5 !important;
+    position: fixed;
+}
+
+.main-nav.scrolled .logo,
+.main-nav.scrolled .catalog-btn {
     color: #000000 !important;
 }
 
-.main-nav .catalog-icon span {
+.main-nav.scrolled .catalog-icon span {
     background: #000000 !important;
 }
 
-.main-nav .nav-icon {
+.main-nav.scrolled .nav-icon {
     filter: none !important;
 }
+
+/* При наведении на белую навигацию (после скролла) */
+.main-nav.scrolled:hover {
+    background: #ffffff !important;
+}
     
-     /* Продукты */
+     /* Герой секция */
+    .hero {
+        position: relative;
+        height: 110vh;
+        min-height: 700px;
+        display: flex;
+        align-items: flex-end; /* Текст внизу */
+        justify-content: center;
+        text-align: center;
+        overflow: hidden;
+        padding-bottom: 100px; /* Отступ снизу */
+    }
+    
+    .hero-background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+    }
+    
+    .hero-bg-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: brightness(0.9);
+    }
+    
+    .hero-content {
+        max-width: 800px;
+        padding: 0 20px;
+        color: #ffffff;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    }
+    
+    .hero h1 {
+        font-size: 32px; /* Уменьшили размер */
+        font-weight: 300;
+        letter-spacing: 3px;
+        margin-bottom: 15px;
+        text-transform: uppercase;
+        color: #ffffff;
+    }
+    
+    .hero p {
+        font-size: 14px; /* Уменьшили размер */
+        letter-spacing: 1.5px;
+        margin-bottom: 30px;
+        text-transform: uppercase;
+        color: #ffffff;
+        line-height: 1.4;
+    }
+    
+    .cta-button {
+        background: transparent;
+        color: #ffffff;
+        border: 1px solid #ffffff;
+        padding: 12px 30px; /* Уменьшили кнопку */
+        font-size: 11px; /* Уменьшили текст */
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        display: inline-block;
+    }
+    
+    .cta-button:hover {
+        background: #ffffff;
+        color: #000000;
+    }
+    
+    /* Категории */
+    .categories {
+        padding: 80px 0;
+        background: #ffffff;
+    }
+    
+    .categories-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+    
+    .categories-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 2px;
+        margin-top: 40px;
+    }
+    
+    .category-card {
+        position: relative;
+        height: 400px;
+        background: #f8f8f8;
+        overflow: hidden;
+        cursor: pointer;
+    }
+    
+    .category-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+    }
+    
+    .category-card:hover img {
+        transform: scale(1.05);
+    }
+    
+    .category-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(255, 255, 255, 0.9);
+        padding: 30px;
+        transform: translateY(100%);
+        transition: transform 0.3s ease;
+    }
+    
+    .category-card:hover .category-overlay {
+        transform: translateY(0);
+    }
+    
+    .category-overlay h3 {
+        font-size: 16px;
+        font-weight: 300;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-bottom: 10px;
+    }
+    
+    .category-overlay p {
+        font-size: 13px;
+        color: #666;
+        letter-spacing: 1px;
+        line-height: 1.6;
+    }
+    
+    /* Продукты */
     .products {
         padding: 80px 0;
         background: #f8f8f8;
@@ -475,6 +658,7 @@
     
     /* Адаптивность */
     @media (max-width: 1024px) {
+        .categories-grid,
         .products-grid {
             grid-template-columns: repeat(2, 1fr);
         }
@@ -489,6 +673,11 @@
             display: none;
         }
         
+        .hero h1 {
+            font-size: 32px;
+        }
+        
+        .categories-grid,
         .products-grid {
             grid-template-columns: 1fr;
         }
@@ -497,8 +686,8 @@
             grid-template-columns: 1fr;
         }
     }
-    /* === КОНЕЦ СТИЛЕЙ ИЗ ГЛАВНОЙ СТРАНИЦЫ === */
-/* Стили для модальных окон футера */
+
+    /* Стили для модальных окон футера */
 .footer-modal {
     display: none;
     position: fixed;
@@ -558,22 +747,56 @@
 .footer-modal-overlay.active {
     display: block;
 }
-/* === ВЫДВИЖНОЕ МОДАЛЬНОЕ ОКНО ТОВАРА === */
+/* Стили для модального окна - делаем кнопки одинаковыми */
+.modal-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.modal-btn {
+    padding: 12px 20px;
+    border: 1px solid #000;
+    background: transparent;
+    cursor: pointer;
+    flex: 1;
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    color: #000;
+    text-align: center;
+}
+
+.modal-btn.favorite {
+    background: #000;
+    color: white;
+}
+
+.modal-btn.cart {
+    background: transparent;
+    color: #000;
+}
+
+.modal-btn:hover {
+    background: #333;
+    color: white;
+}
+    /* === ВЫДВИЖНОЕ МОДАЛЬНОЕ ОКНО ТОВАРА === */
 .product-modal {
     position: fixed;
     top: 0;
-    left: -600px; /* Скрыто за левым краем */
+    left: -600px;
     width: 500px;
     height: 100vh;
     background: #ffffff;
     z-index: 2000;
     transition: left 0.4s ease;
     box-shadow: 2px 0 15px rgba(0,0,0,0.1);
-    /* УБРАЛИ display: none */
 }
 
 .product-modal.active {
-    left: 0; /* Появляется слева */
+    left: 0;
 }
 
 .modal-overlay {
@@ -590,6 +813,7 @@
 .modal-overlay.active {
     display: block;
 }
+
 .modal-content {
     padding: 40px 30px;
     height: 100%;
@@ -670,7 +894,8 @@
     </style>
 </head>
 <body>
-    <!-- === НАЧАЛО НАВИГАЦИИ ИЗ ГЛАВНОЙ СТРАНИЦЫ === -->
+    
+         <!-- Главная навигация -->
     <nav class="main-nav">
         <div class="nav-container">
             <!-- Левая часть - меню каталога -->
@@ -689,34 +914,34 @@
                         <button class="close-menu">×</button>
                     </div>
                     <div class="catalog-categories">
-                        <!-- ОБНОВЛЕННЫЕ ССЫЛКИ НА КАТЕГОРИИ -->
-                        <a href="fashion.html" class="category-item">
-                            <span class="category-text">
-                                <strong>Мода</strong>
-                            </span>
-                        </a>
-                        <a href="uvelir.html" class="category-item">
-                            <span class="category-text">
-                                <strong>Ювелирные изделия</strong>
-                            </span>
-                        </a>
-                        <a href="home.html" class="category-item">
-                            <span class="category-text">
-                                <strong>Дом</strong>
-                            </span>
-                        </a>
-                        <a href="tech.html" class="category-item">
-                            <span class="category-text">
-                                <strong>Технологии</strong>
-                            </span>
-                        </a>
-                    </div>
+    <!-- ОБНОВЛЕННЫЕ ССЫЛКИ -->
+    <a href="fashion.html" class="category-item">
+        <span class="category-text">
+            <strong>Мода</strong>
+        </span>
+    </a>
+    <a href="uvelir.html" class="category-item">
+        <span class="category-text">
+            <strong>Ювелирные изделия</strong>
+        </span>
+    </a>
+    <a href="home.html" class="category-item">
+        <span class="category-text">
+            <strong>Дом</strong>
+        </span>
+    </a>
+    <a href="tech.html" class="category-item">
+        <span class="category-text">
+            <strong>Технологии</strong>
+        </span>
+    </a>
+</div>
                 </div>
                 <div class="menu-overlay"></div>
             </div>
             
             <!-- Центр - логотип -->
-            <a href="index.html" class="logo">АНТИSHOP</a> <!-- Ссылка на главную -->
+            <a href="index.html" class="logo">АНТИSHOP</a>
             
 <!-- Правая часть - иконки -->
 <div class="nav-right">
@@ -730,7 +955,7 @@
         </div>
     </div>
     <!-- ЗДЕСЬ БЫЛИ СТАРЫЕ ССЫЛКИ - ЗАМЕНИТЬ ИХ -->
-<a href="favorites.html" class="nav-icon-link">
+    <a href="favorites.html" class="nav-icon-link">
     <img src="heart.png" alt="Избранное" class="nav-icon">
 </a>
 <a href="cart.html" class="nav-icon-link">
@@ -740,102 +965,129 @@
 </div>
         </div>
     </nav>
-    <!-- === КОНЕЦ НАВИГАЦИИ === -->
 
-    <!-- === ВАШ КОНТЕНТ СТРАНИЦЫ МОДЫ === -->
-    <section class="products" style="margin-top: 100px;"> 
-        <div class="products-container">
-            <div class="section-header">
-                <h2>Дом</h2>
-            </div>
-
-            <div class="products-grid">
-                <!-- ТОВАР 1 -->
-                <div class="product-card" data-product="home1">
-                    <div class="product-image">
-                        <img src="8.png" alt="Терка Гладкая">
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Терка Гладкая</h3>
-                        <p class="product-price">6 200 ₽</p>
-                    </div>
-                </div>
-                
-                <!-- ТОВАР 2 -->
-                <div class="product-card" data-product="home2">
-                    <div class="product-image">
-                        <img src="18.png" alt="Салфетница">
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Салфетница</h3>
-                        <p class="product-price">11 900 ₽</p>
-                    </div>
-                </div>
-                
-                <!-- ТОВАР 3 -->
-                <div class="product-card" data-product="home3">
-                    <div class="product-image">
-                        <img src="19.png" alt="Кружка">
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Кружка</h3>
-                        <p class="product-price">2 000 ₽</p>
-                    </div>
-                </div>
-                
-                <!-- ТОВАР 4 -->
-                <div class="product-card" data-product="home4">
-                    <div class="product-image">
-                        <img src="26.png" alt="Лавровый Лист">
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Лавровый Лист</h3>
-                        <p class="product-price">5 000 ₽</p>
-                    </div>
-                </div>
-
-                <div class="product-card" data-product="home5">
-                    <div class="product-image">
-                        <img src="15.png" alt="Повязка для пульта">
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Повязка для пульта</h3>
-                        <p class="product-price">30 000 ₽</p>
-                    </div>
-                </div>
-
-                <div class="product-card" data-product="home6">
-                    <div class="product-image">
-                        <img src="10.png" alt="Ковер из шерсти кота">
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Ковер из шерсти кота</h3>
-                        <p class="product-price">80 000 ₽</p>
-                    </div>
-                </div>
-
-                <div class="product-card" data-product="home7">
-                    <div class="product-image">
-                        <img src="28.png" alt="Соска">
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Соска</h3>
-                        <p class="product-price">4 000 ₽</p>
-                    </div>
-                </div>
-                <div class="product-card" data-product="home8">
-                    <div class="product-image">
-                        <img src="30.png" alt="Грустный чемодан">
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Грустный чемодан</h3>
-                        <p class="product-price">50 000 ₽</p>
-                    </div>
-                </div>
-            </div>
+        <!-- Герой секция -->
+    <section class="hero">
+        <!-- Фоновое изображение -->
+        <div class="hero-background">
+            <img src="banner.jpeg" alt="Фон" class="hero-bg-image">
+        </div>
+        
+        <div class="hero-content">
+            <div class="hero-line"></div>
+            <h1>АНТИSHOP</h1>
+            <p>Ознакомьтесь с великими творениями</p>
+            <a href="#collections" class="cta-button">Открыть коллекцию</a>
         </div>
     </section>
 
+    <!-- Категории -->
+    <section class="categories" id="collections">
+        <div class="categories-container">
+            <div class="section-header">
+                <h2>Коллекции</h2>
+                <p>Откройте для себя мир ненужных вещей</p>
+            </div>
+            
+            <div class="categories-grid">
+    <!-- КАРТОЧКА МОДЫ С ССЫЛКОЙ -->
+    <div class="category-card">
+        <a href="fashion.html" style="display: block; text-decoration: none; color: inherit;">
+            <img src="moda.png" alt="Женские сумки">
+            <div class="category-overlay">
+                <h3>Мода</h3>
+                <p>Иконные модели и новые творения</p>
+            </div>
+        </a>
+    </div>
+    
+    <!-- КАРТОЧКА ЮВЕЛИРКИ С ССЫЛКОЙ -->
+    <div class="category-card">
+        <a href="uvelir.html" style="display: block; text-decoration: none; color: inherit;">
+            <img src="uve.png" alt="Ювелирные изделия">
+            <div class="category-overlay">
+                <h3>Ювелирные изделия</h3>
+                <p>Изысканные украшения для женщин</p>
+            </div>
+        </a>
+    </div>
+    
+    <!-- КАРТОЧКА ДОМА С ССЫЛКОЙ -->
+    <div class="category-card">
+        <a href="home.html" style="display: block; text-decoration: none; color: inherit;">
+            <img src="dom1.png" alt="Красота">
+            <div class="category-overlay">
+                <h3>Дом</h3>
+                <p>Современный подход к проблемам</p>
+            </div>
+        </a>
+    </div>
+    
+    <!-- КАРТОЧКА ТЕХНИКИ С ССЫЛКОЙ -->
+    <div class="category-card">
+        <a href="tech.html" style="display: block; text-decoration: none; color: inherit;">
+            <img src="tech.png" alt="Мужская коллекция">
+            <div class="category-overlay">
+                <h3>Технологии</h3>
+                <p>Эксклюзивные изобретения</p>
+            </div>
+        </a>
+    </div>
+</div>
+        </div>
+    </section>
+
+    <!-- Продукты -->
+    <section class="products">
+        <div class="products-container">
+            <div class="section-header">
+                <h2>Избранные товары</h2>
+                <p>Покупают чаще всего</p>
+            </div>
+            
+            <div class="products-grid">
+    <div class="product-card" data-product="fashion1">
+        <div class="product-image">
+            <img src="6.png" alt="Кофта прозрачная">
+        </div>
+        <div class="product-info">
+            <h3 class="product-title">Кофта прозрачная</h3>
+            <p class="product-price">15 000 ₽</p>
+        </div>
+    </div>
+    
+    <div class="product-card" data-product="home1">
+        <div class="product-image">
+            <img src="8.png" alt="Терка">
+        </div>
+        <div class="product-info">
+            <h3 class="product-title">Терка гладкая</h3>
+            <p class="product-price">6 200 ₽</p>
+        </div>
+    </div>
+    
+    <div class="product-card" data-product="home2">
+        <div class="product-image">
+            <img src="18.png" alt="Салфетница">
+        </div>
+        <div class="product-info">
+            <h3 class="product-title">Салфетница</h3>
+            <p class="product-price">11 900 ₽</p>
+        </div>
+    </div>
+    
+    <div class="product-card" data-product="tech1">
+        <div class="product-image">
+            <img src="21.png" alt="Пулевизатор">
+        </div>
+        <div class="product-info">
+            <h3 class="product-title">Пулевизатор</h3>
+            <p class="product-price">18 000 ₽</p>
+        </div>
+    </div>
+</div>
+        </div>
+    </section>
 <!-- === ВЫДВИЖНОЕ МОДАЛЬНОЕ ОКНО ТОВАРА === -->
 <div id="productModal" class="product-modal">
     <div class="modal-content">
@@ -851,9 +1103,8 @@
     </div>
 </div>
 <div class="modal-overlay"></div>
-
-    <!-- === НАЧАЛО ФУТЕРА ИЗ ГЛАВНОЙ СТРАНИЦЫ === -->
-     <footer>
+    <!-- Футер -->
+    <footer>
     <div class="footer-container">
         <div class="footer-section">
             <h3>Помощь</h3>
@@ -906,9 +1157,7 @@
     </div>
 </div>
 <div class="footer-modal-overlay"></div>
-    <!-- === КОНЕЦ ФУТЕРА === -->
-
-    <!-- === СКРИПТЫ === -->
+</body>
 <script>
     // Скрипт для модальных окон футера
 document.addEventListener('DOMContentLoaded', function() {
@@ -950,65 +1199,82 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
-// Данные для товаров дома
-const homeProducts = {
+// Глобальные переменные
+let currentProductId = null;
+
+// Данные для избранных товаров
+const featuredProducts = {
+    fashion1: { 
+        image: '6.png', 
+        title: 'Кофта прозрачная', 
+        description: 'Элегантная прозрачная кофта для смелых образов. Идеально сочетается с базовыми вещами. Премиальный материал, ручная работа.', 
+        price: '15 000 ₽' 
+    },
     home1: { 
         image: '8.png', 
-        title: 'Терка Гладкая', 
-        description: 'Инновационная терка с абсолютно гладкой поверхностью. Для тех, кто ценит минимализм в кухонных принадлежностях. Не царапает поверхности.', 
+        title: 'Терка гладкая', 
+        description: 'Инновационная терка с абсолютно гладкой поверхностью. Для тех, кто ценит минимализм в кухонных принадлежностях.', 
         price: '6 200 ₽' 
     },
     home2: { 
         image: '18.png', 
         title: 'Салфетница', 
-        description: 'Элегантная салфетница для стильного сервировочного стола. Изготовлена из экологичных материалов, подчеркивает ваш вкус.', 
+        description: 'Элегантная салфетница для стильного сервировочного стола. Изготовлена из экологичных материалов.', 
         price: '11 900 ₽' 
     },
-    home3: { 
-        image: '19.png', 
-        title: 'Кружка', 
-        description: 'Минималистичная кружка для утреннего кофе и вечернего чая. Удобная ручка и оптимальный объем 300 мл.', 
-        price: '2 000 ₽' 
-    },
-    home4: { 
-        image: '26.png', 
-        title: 'Лавровый Лист', 
-        description: 'Декоративный лавровый лист для интерьера кухни. Создает уютную атмосферу и напоминает о домашней кухне.', 
-        price: '5 000 ₽' 
-    },
-    home5: { 
-        image: '15.png', 
-        title: 'Повязка для пульта', 
-        description: 'Стильная повязка для телевизионного пульта. Помогает не терять пульт и поддерживает порядок в гостиной.', 
-        price: '30 000 ₽' 
-    },
-    home6: { 
-        image: '10.png', 
-        title: 'Ковер из шерсти кота', 
-        description: 'Эксклюзивный ковер из натуральной кошачьей шерсти. Теплый, мягкий и абсолютно гипоаллергенный. Для истинных ценителей уюта.', 
-        price: '80 000 ₽' 
-    },
-    home7: { 
-        image: '28.png', 
-        title: 'Соска', 
-        description: 'Дизайнерская соска для взрослых. Снимает стресс и добавляет элемент ностальгии в интерьер.', 
-        price: '4 000 ₽' 
-    },
-    home8: { 
-        image: '30.png', 
-        title: 'Грустный чемодан', 
-        description: 'Чемодан с эмоциональным дизайном. Идеально подходит для хранения воспоминаний или как элемент декора.', 
-        price: '50 000 ₽' 
+    tech1: { 
+        image: '21.png', 
+        title: 'Пулевизатор', 
+        description: 'Инновационный пулевизатор для равномерного распыления жидкостей. Идеален для ухода за растениями.', 
+        price: '18 000 ₽' 
     }
 };
 
-// Основной скрипт (используй ТОТ ЖЕ скрипт что и для моды, только замени fashionProducts на homeProducts)
+// Основная инициализация при загрузке страницы
 document.addEventListener('DOMContentLoaded', function() {
+    // Навигация и скролл
+    initNavbar();
+    
+    // Меню каталога
     initCatalogMenu();
-    initProductModal(homeProducts);
+    
+    // Плавный скролл
+    initSmoothScroll();
+    
+    // Модальное окно товара
+    initProductModal();
+    
+    // Поиск товаров
     initSearch();
+    
+    // Корзина и счетчик
     updateCartCounter();
+    
 });
+
+// Навигация и скролл
+function initNavbar() {
+    const mainNav = document.querySelector('.main-nav');
+    const heroSection = document.querySelector('.hero');
+    
+    function updateNavbar() {
+        const scrollPosition = window.scrollY;
+        const opacity = Math.min(scrollPosition / 200, 1);
+        
+        if (scrollPosition > 50) {
+            mainNav.classList.add('scrolled');
+            mainNav.style.background = `rgba(255, 255, 255, ${opacity})`;
+        } else {
+            mainNav.classList.remove('scrolled');
+            mainNav.style.background = 'transparent';
+        }
+    }
+    
+    window.addEventListener('scroll', updateNavbar);
+    updateNavbar();
+}
+
+// Меню каталога
 function initCatalogMenu() {
     const catalogBtn = document.querySelector('.catalog-btn');
     const catalogMenu = document.querySelector('.catalog-menu');
@@ -1036,39 +1302,67 @@ function initCatalogMenu() {
     }
 }
 
-function initProductModal(products) {
+// Плавный скролл
+function initSmoothScroll() {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+}
+
+// Модальное окно товара
+function initProductModal() {
     const modal = document.getElementById('productModal');
     const overlay = document.querySelector('.modal-overlay');
     const closeModalBtn = document.querySelector('.close-modal');
-    let currentProductId = null;
 
+    // Открытие модального окна при клике на товар
     document.querySelectorAll('.product-card').forEach(card => {
-        card.addEventListener('click', function() {
-            const productId = this.getAttribute('data-product');
-            currentProductId = productId;
-            const product = products[productId];
-            
-            if (product) {
-                document.getElementById('modalImage').src = product.image;
-                document.getElementById('modalTitle').textContent = product.title;
-                document.getElementById('modalDescription').textContent = product.description;
-                document.getElementById('modalPrice').textContent = product.price;
-                
-                modal.style.display = 'block';
-                setTimeout(() => {
-                    modal.classList.add('active');
-                    overlay.classList.add('active');
-                }, 10);
-                
-                document.body.style.overflow = 'hidden';
+        card.addEventListener('click', function(e) {
+            // Проверяем, не кликнули ли по кнопкам
+            if (!e.target.classList.contains('add-to-cart-btn') && 
+                !e.target.classList.contains('add-to-favorites-btn')) {
+                const productId = this.getAttribute('data-product');
+                openProductModal(productId);
             }
         });
     });
 
+    function openProductModal(productId) {
+        currentProductId = productId;
+        const product = featuredProducts[productId];
+        if (product) {
+            document.getElementById('modalImage').src = product.image;
+            document.getElementById('modalTitle').textContent = product.title;
+            document.getElementById('modalDescription').textContent = product.description;
+            document.getElementById('modalPrice').textContent = product.price;
+            
+            modal.style.display = 'block';
+            setTimeout(() => {
+                modal.classList.add('active');
+                overlay.classList.add('active');
+            }, 10);
+            
+            document.body.style.overflow = 'hidden';
+        }
+    }
+
+    // Закрытие модального окна
     closeModalBtn.addEventListener('click', closeModal);
     overlay.addEventListener('click', closeModal);
 
     function closeModal() {
+        const modal = document.getElementById('productModal');
+        const overlay = document.querySelector('.modal-overlay');
+        
         modal.classList.remove('active');
         overlay.classList.remove('active');
         setTimeout(() => {
@@ -1077,29 +1371,70 @@ function initProductModal(products) {
         document.body.style.overflow = '';
     }
 
+    // Закрытие по ESC
     document.addEventListener('keydown', function(event) {
         if (event.key === 'Escape') {
             closeModal();
         }
     });
 
+    // Обработчики для кнопок в модальном окне
     document.querySelector('.modal-btn.cart').addEventListener('click', function() {
         if (currentProductId) {
-            addToCartFromCard(currentProductId, products);
+            addToCartFromCard(currentProductId);
             closeModal();
         }
     });
     
     document.querySelector('.modal-btn.favorite').addEventListener('click', function() {
         if (currentProductId) {
-            addToFavoritesFromCard(currentProductId, products);
+            addToFavoritesFromCard(currentProductId);
             closeModal();
         }
     });
 }
 
-function addToCartFromCard(productId, products) {
-    const product = products[productId];
+// Добавление кнопок к карточкам товаров
+function addButtonsToProductCards() {
+    const productCards = document.querySelectorAll('.product-card');
+    
+    productCards.forEach(card => {
+        const productId = card.getAttribute('data-product');
+        
+        // Создаем контейнер для кнопок
+        const actionsContainer = document.createElement('div');
+        actionsContainer.className = 'product-actions';
+        
+        // Кнопка "В корзину"
+        const cartBtn = document.createElement('button');
+        cartBtn.className = 'add-to-cart-btn';
+        cartBtn.textContent = 'В корзину';
+        cartBtn.onclick = function(e) {
+            e.stopPropagation(); // Предотвращаем открытие модального окна
+            addToCartFromCard(productId);
+        };
+        
+        // Кнопка "В избранное"
+        const favBtn = document.createElement('button');
+        favBtn.className = 'add-to-favorites-btn';
+        favBtn.textContent = 'В избранное';
+        favBtn.onclick = function(e) {
+            e.stopPropagation(); // Предотвращаем открытие модального окна
+            addToFavoritesFromCard(productId);
+        };
+        
+        // Добавляем кнопки в контейнер
+        actionsContainer.appendChild(cartBtn);
+        actionsContainer.appendChild(favBtn);
+        
+        // Добавляем контейнер к карточке
+        card.appendChild(actionsContainer);
+    });
+}
+
+// Функции для работы с корзиной
+function addToCartFromCard(productId) {
+    const product = featuredProducts[productId];
     if (product) {
         addToCart(productId, product.title, product.price, product.image);
     }
@@ -1107,6 +1442,7 @@ function addToCartFromCard(productId, products) {
 
 function addToCart(productId, productTitle, productPrice, productImage) {
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    
     const existingItem = cart.find(item => item.id === productId);
     
     if (existingItem) {
@@ -1126,8 +1462,9 @@ function addToCart(productId, productTitle, productPrice, productImage) {
     showNotification('Товар добавлен в корзину!');
 }
 
-function addToFavoritesFromCard(productId, products) {
-    const product = products[productId];
+// Функции для работы с избранным
+function addToFavoritesFromCard(productId) {
+    const product = featuredProducts[productId];
     if (product) {
         addToFavorites(productId, product.title, product.price, product.image);
     }
@@ -1135,6 +1472,7 @@ function addToFavoritesFromCard(productId, products) {
 
 function addToFavorites(productId, productTitle, productPrice, productImage) {
     let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+    
     const existingItem = favorites.find(item => item.id === productId);
     
     if (!existingItem) {
@@ -1151,6 +1489,7 @@ function addToFavorites(productId, productTitle, productPrice, productImage) {
     }
 }
 
+// Обновление счетчика корзины
 function updateCartCounter() {
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
     const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
@@ -1160,6 +1499,7 @@ function updateCartCounter() {
     }
 }
 
+// Уведомления
 function showNotification(message) {
     const notification = document.createElement('div');
     notification.style.cssText = `
@@ -1189,6 +1529,7 @@ function showNotification(message) {
     }, 3000);
 }
 
+// Поиск товаров
 function initSearch() {
     const searchInput = document.querySelector('.search-box input');
     const searchClose = document.querySelector('.search-close');
@@ -1235,6 +1576,7 @@ function initSearch() {
     }
 }
 
+// Добавляем стили для анимаций
 const style = document.createElement('style');
 style.textContent = `
     @keyframes slideIn {
@@ -1247,6 +1589,6 @@ style.textContent = `
     }
 `;
 document.head.appendChild(style);
+
 </script>
-</body>
 </html>
